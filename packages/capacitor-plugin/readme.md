@@ -27,12 +27,12 @@ npx cap sync
 ### registerBroadcastReceiver(...)
 
 ```typescript
-registerBroadcastReceiver(options: { filters: string[]; }, callback: (data: { [key: string]: any; }) => void) => any
+registerBroadcastReceiver(options: { filters: string[]; categories?: string[]; }, callback: (data: { [key: string]: any; }) => void) => any
 ```
 
 | Param          | Type                                                    |
 | -------------- | ------------------------------------------------------- |
-| **`options`**  | <code>{ filters: {}; }</code>                           |
+| **`options`**  | <code>{ filters: {}; categories?: {}; }</code>          |
 | **`callback`** | <code>(data: { [key: string]: any; }) =&gt; void</code> |
 
 **Returns:** <code>any</code>
