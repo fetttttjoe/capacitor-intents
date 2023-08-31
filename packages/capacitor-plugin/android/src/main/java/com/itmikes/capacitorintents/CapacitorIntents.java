@@ -71,34 +71,42 @@ public class CapacitorIntents extends Plugin {
     private void requestBroadcastUpdates(final PluginCall call) throws JSONException {
         final String callBackID = call.getCallbackId();
         IntentFilter ifilt = new IntentFilter();
-        JSArray jsArr = call.getArray("filters");
-        if (jsArr.length() >= 1) {
-            for (int i = 0; i < jsArr.length(); i++) {
-                ifilt.addAction(jsArr.getString(i));
+        JSArray filters = call.getArray("filters");
+        JSArray categories = call.getArray("categories");
+        // Support all Capacitor Versions
+        if (filters == null || filters.length() == 0) {
+            call.reject("Filters are required: at least 1 entry");
+            return;
+        }
+        for (int i = 0; i < filters.length(); i++) {
+            ifilt.addAction(filters.getString(i));
+        }
+        // Add Support for Categories
+        if (categories != null && categories.length() > 0) {
+            for (int i = 0; i < categories.length(); i++) {
+                ifilt.addCategory(categories.getString(i));
             }
-            receiverMap.put(
-                callBackID,
-                new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        PluginCall refCall = watchingCalls.get(callBackID);
-                        if (refCall != null) {
-                            JSObject jsO = null;
-                            try {
-                                jsO = JSObject.fromJSONObject(getIntentJson(intent));
-                                refCall.resolve(jsO);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+        }
+        receiverMap.put(
+            callBackID,
+            new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    PluginCall refCall = watchingCalls.get(callBackID);
+                    if (refCall != null) {
+                        JSObject jsO = null;
+                        try {
+                            jsO = JSObject.fromJSONObject(getIntentJson(intent));
+                            refCall.resolve(jsO);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
-            );
+            }
+        );
 
-            this.getContext().registerReceiver(receiverMap.get(callBackID), ifilt);
-        } else {
-            call.reject("Filters are required: at least 1 entry");
-        }
+        this.getContext().registerReceiver(receiverMap.get(callBackID), ifilt);
     }
 
     private void removeReceiver(String callBackID) {
