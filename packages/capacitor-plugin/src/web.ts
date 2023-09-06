@@ -4,7 +4,7 @@ import type { CapacitorIntentsPlugin } from './definitions';
 
 export class CapacitorIntentsPluginWeb extends WebPlugin implements CapacitorIntentsPlugin {
   async registerBroadcastReceiver(
-    _options: { filters: string[] },
+    _options: { filters: string[], categories?: string[] },
     _callback: (data: { [key: string]: any }) => void
   ): Promise<string> {
     throw new Error('Feature not implemented in web.');

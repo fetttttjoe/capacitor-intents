@@ -18,6 +18,7 @@ Register Listener:
 ```Typescript
 CapacitorIntents.registerBroadcastReceiver({
     filters: ['com.your.custom.action', 'com.symbol.datawedge.api.RESULT_ACTION'],
+    categories: ['android.intent.category.DEFAULT']
     },
     // Callback function
     (intent) => {
