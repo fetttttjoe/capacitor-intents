@@ -1,11 +1,11 @@
-# capacitor-android-intents
+# capacitor-intents-android
 
 Simple intent tools for Capacitor on Android platform.
 
 ## Install
 
 ```bash
-npm install capacitor-android-intents
+npm install capacitor-intents-android
 npx cap sync
 ```
 

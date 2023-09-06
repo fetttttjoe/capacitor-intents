@@ -14,5 +14,5 @@ project(':capacitor-keyboard').projectDir = new File('../../../node_modules/.pnp
 include ':capacitor-status-bar'
 project(':capacitor-status-bar').projectDir = new File('../../../node_modules/.pnpm/@capacitor+status-bar@5.0.2_@capacitor+core@5.0.3/node_modules/@capacitor/status-bar/android')
 
-include ':capacitor-android-intents'
-project(':capacitor-android-intents').projectDir = new File('../../capacitor-plugin/android')
+include ':capacitor-intents-android'
+project(':capacitor-intents-android').projectDir = new File('../../capacitor-plugin/android')

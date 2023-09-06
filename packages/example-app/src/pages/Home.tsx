@@ -1,7 +1,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton } from '@ionic/react';
 import './Home.css';
 
-import { CapacitorIntents } from 'capacitor-android-intents';
+import { CapacitorIntents } from 'capacitor-intents-android';
 import { useCallback, useState } from 'react';
 
 const Home: React.FC = () => {
@@ -12,8 +12,10 @@ const Home: React.FC = () => {
   const [isTestSetup, setIsTestSetup] = useState<boolean>(false);
   const [testState, setTestState] = useState<boolean | null>(null);
 
+  const action = 'example.your.test.action';
+
   const setupPluginTest = async () => {
-    const rId = await CapacitorIntents.registerBroadcastReceiver({filters: ['example.itmikes.action']}, async (data) => {
+    const rId = await CapacitorIntents.registerBroadcastReceiver({filters: [action]}, async (data) => {
       // data is a JS Object but could contain any structure
       console.dir(data);
       const extras = JSON.parse(data['extras']);
@@ -41,7 +43,7 @@ const Home: React.FC = () => {
   }
 
   const testPlugin = async () => {
-    await CapacitorIntents.sendBroadcastIntent({action: 'example.itmikes.action', extras: {testValue: "Test String"}});
+    await CapacitorIntents.sendBroadcastIntent({action: action, extras: {testValue: "Test String"}});
     setIsTestSetup(false);
   }
 
