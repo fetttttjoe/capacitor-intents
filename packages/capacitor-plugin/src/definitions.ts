@@ -1,6 +1,6 @@
 export interface CapacitorIntentsPlugin {
   registerBroadcastReceiver(
-    options: { filters: string[] , categories?: string[]},
+    options: { filters: string[]; categories?: string[] },
     callback: (data: { [key: string]: any }) => void
   ): Promise<string>;
 
