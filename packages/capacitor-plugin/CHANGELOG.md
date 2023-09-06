@@ -1,3 +1,10 @@
+# [1.2.0-next.1](https://github.com/fetttttjoe/capacitor-intents/compare/v1.1.1...v1.2.0-next.1) (2023-09-06)
+
+
+### Features
+
+* add categories to registerBroadcastReceiver ([deec1b3](https://github.com/fetttttjoe/capacitor-intents/commit/deec1b3f8c18ee24dc5f094090c1ff2c66ff1caa))
+
 ## [1.1.1](https://github.com/fetttttjoe/capacitor-intents/compare/v1.1.0...v1.1.1) (2023-09-04)
 
 
